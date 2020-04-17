@@ -23,22 +23,36 @@ public class wordListing {
         do { //Prompt user to enter 10 words
             for (int i = 0; i < size; i++){
                 System.out.print("Enter 10 words: ");
+                //Stores the words entered
                 arr[i] = keyboard.nextLine();
             }
-//        String temp[] = new String[10];
+            //Prints out the words in original order
+            System.out.println("Original Order: " + Arrays.toString(arr));
         } while (arr[9].isEmpty()); //once the last word has been enter, it exits loop
 
-        if (!arr[9].isEmpty()){ //check if the last space in the array is not empty
-            //Print out the array as it was entered
-            System.out.println("Original Order: " + Arrays.toString(arr));
-            //Sort the array in ascending order
-            Arrays.sort(arr);
-            //Print out array in ascending order
-            System.out.println("Alphabetical Order: " + Arrays.toString(arr));
-            //Sort the array in descending order
-            Arrays.sort(arr, reverseOrder());
-            //Print out array in descending order
-            System.out.println("Reversed Alphabetical Order: " + Arrays.toString(arr));
+        //check if the last space in the array is not empty
+           String temp; //Create a temp value
+           for (int i = arr.length - 1; i > 0; i--){
+               for(int g = 0; g < i; g++){
+                   if ((arr[g].compareTo(arr[g+1]) > 0)){ //Compares the values and switches them
+                       temp = arr[g];
+                       arr[g] = arr[g+1];
+                       arr[g+1] = temp;
+                   }
+               }
+           }
+           //Print Ascending Alphabet order
+           System.out.println("Ascending Alphabet Order: " + Arrays.toString(arr));
+           for (int i = arr.length - 1; i > 0; i--){
+            for(int g = 0; g < i; g++){
+                if ((arr[g].compareTo(arr[g+1]) < 0)){ //Compares the values and switches them
+                    temp = arr[g];
+                    arr[g] = arr[g+1];
+                    arr[g+1] = temp;
+                }
+            }
         }
+           //Print Descending Alphabet Order
+        System.out.println("Descending Alphabet Order: " + Arrays.toString(arr));
     }
 }
